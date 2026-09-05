@@ -9,11 +9,13 @@
       "dependencies": [
         "file_picker",
         "flutter",
+        "flutter_local_notifications",
         "http",
         "image_picker",
         "path_provider",
         "permission_handler",
-        "record"
+        "record",
+        "shared_preferences"
       ],
       "devDependencies": [
         "flutter_lints",
@@ -43,6 +45,35 @@
         "stream_channel",
         "test_api",
         "vector_math"
+      ]
+    },
+    {
+      "name": "file_picker",
+      "version": "8.3.7",
+      "dependencies": [
+        "cross_file",
+        "ffi",
+        "flutter",
+        "flutter_plugin_android_lifecycle",
+        "flutter_web_plugins",
+        "path",
+        "plugin_platform_interface",
+        "web",
+        "win32"
+      ]
+    },
+    {
+      "name": "image_picker",
+      "version": "1.2.3",
+      "dependencies": [
+        "flutter",
+        "image_picker_android",
+        "image_picker_for_web",
+        "image_picker_ios",
+        "image_picker_linux",
+        "image_picker_macos",
+        "image_picker_platform_interface",
+        "image_picker_windows"
       ]
     },
     {
@@ -194,6 +225,122 @@
       ]
     },
     {
+      "name": "web",
+      "version": "1.1.1",
+      "dependencies": []
+    },
+    {
+      "name": "cross_file",
+      "version": "0.3.5+5",
+      "dependencies": [
+        "meta",
+        "web"
+      ]
+    },
+    {
+      "name": "win32",
+      "version": "5.15.0",
+      "dependencies": [
+        "ffi"
+      ]
+    },
+    {
+      "name": "ffi",
+      "version": "2.2.0",
+      "dependencies": []
+    },
+    {
+      "name": "plugin_platform_interface",
+      "version": "2.1.8",
+      "dependencies": [
+        "meta"
+      ]
+    },
+    {
+      "name": "flutter_plugin_android_lifecycle",
+      "version": "2.0.35",
+      "dependencies": [
+        "flutter"
+      ]
+    },
+    {
+      "name": "flutter_web_plugins",
+      "version": "0.0.0",
+      "dependencies": [
+        "flutter"
+      ]
+    },
+    {
+      "name": "image_picker_windows",
+      "version": "0.2.2",
+      "dependencies": [
+        "file_selector_platform_interface",
+        "file_selector_windows",
+        "flutter",
+        "image_picker_platform_interface"
+      ]
+    },
+    {
+      "name": "image_picker_platform_interface",
+      "version": "2.11.1",
+      "dependencies": [
+        "cross_file",
+        "flutter",
+        "http",
+        "plugin_platform_interface"
+      ]
+    },
+    {
+      "name": "image_picker_macos",
+      "version": "0.2.2+1",
+      "dependencies": [
+        "file_selector_macos",
+        "file_selector_platform_interface",
+        "flutter",
+        "image_picker_platform_interface"
+      ]
+    },
+    {
+      "name": "image_picker_linux",
+      "version": "0.2.2",
+      "dependencies": [
+        "file_selector_linux",
+        "file_selector_platform_interface",
+        "flutter",
+        "image_picker_platform_interface"
+      ]
+    },
+    {
+      "name": "image_picker_ios",
+      "version": "0.8.13+7",
+      "dependencies": [
+        "flutter",
+        "image_picker_platform_interface",
+        "meta"
+      ]
+    },
+    {
+      "name": "image_picker_for_web",
+      "version": "3.1.1",
+      "dependencies": [
+        "flutter",
+        "flutter_web_plugins",
+        "image_picker_platform_interface",
+        "mime",
+        "web"
+      ]
+    },
+    {
+      "name": "image_picker_android",
+      "version": "0.8.13+22",
+      "dependencies": [
+        "flutter",
+        "flutter_plugin_android_lifecycle",
+        "image_picker_platform_interface",
+        "meta"
+      ]
+    },
+    {
       "name": "permission_handler_platform_interface",
       "version": "4.4.1",
       "dependencies": [
@@ -331,11 +478,6 @@
       ]
     },
     {
-      "name": "web",
-      "version": "1.1.1",
-      "dependencies": []
-    },
-    {
       "name": "http_parser",
       "version": "4.1.2",
       "dependencies": [
@@ -420,18 +562,49 @@
       ]
     },
     {
-      "name": "plugin_platform_interface",
-      "version": "2.1.8",
+      "name": "file_selector_windows",
+      "version": "0.9.3+6",
       "dependencies": [
+        "cross_file",
+        "file_selector_platform_interface",
+        "flutter",
         "meta"
       ]
     },
     {
-      "name": "flutter_web_plugins",
-      "version": "0.0.0",
+      "name": "file_selector_platform_interface",
+      "version": "2.7.0",
       "dependencies": [
-        "flutter"
+        "cross_file",
+        "flutter",
+        "http",
+        "plugin_platform_interface"
       ]
+    },
+    {
+      "name": "file_selector_macos",
+      "version": "0.9.5+1",
+      "dependencies": [
+        "cross_file",
+        "file_selector_platform_interface",
+        "flutter",
+        "meta"
+      ]
+    },
+    {
+      "name": "file_selector_linux",
+      "version": "0.9.4+1",
+      "dependencies": [
+        "cross_file",
+        "file_selector_platform_interface",
+        "flutter",
+        "meta"
+      ]
+    },
+    {
+      "name": "mime",
+      "version": "2.1.0",
+      "dependencies": []
     },
     {
       "name": "yaml",
@@ -441,11 +614,6 @@
         "source_span",
         "string_scanner"
       ]
-    },
-    {
-      "name": "ffi",
-      "version": "2.2.0",
-      "dependencies": []
     },
     {
       "name": "platform",
@@ -576,169 +744,149 @@
       ]
     },
     {
-      "name": "image_picker",
-      "version": "1.2.3",
+      "name": "flutter_local_notifications",
+      "version": "17.2.4",
       "dependencies": [
+        "clock",
         "flutter",
-        "image_picker_android",
-        "image_picker_for_web",
-        "image_picker_ios",
-        "image_picker_linux",
-        "image_picker_macos",
-        "image_picker_platform_interface",
-        "image_picker_windows"
+        "flutter_local_notifications_linux",
+        "flutter_local_notifications_platform_interface",
+        "timezone"
       ]
     },
     {
-      "name": "image_picker_windows",
-      "version": "0.2.2",
+      "name": "flutter_local_notifications_platform_interface",
+      "version": "7.2.0",
       "dependencies": [
-        "file_selector_platform_interface",
-        "file_selector_windows",
         "flutter",
-        "image_picker_platform_interface"
-      ]
-    },
-    {
-      "name": "image_picker_linux",
-      "version": "0.2.2",
-      "dependencies": [
-        "file_selector_linux",
-        "file_selector_platform_interface",
-        "flutter",
-        "image_picker_platform_interface"
-      ]
-    },
-    {
-      "name": "image_picker_platform_interface",
-      "version": "2.11.1",
-      "dependencies": [
-        "cross_file",
-        "flutter",
-        "http",
         "plugin_platform_interface"
       ]
     },
     {
-      "name": "image_picker_macos",
-      "version": "0.2.2+1",
+      "name": "flutter_local_notifications_linux",
+      "version": "4.0.1",
       "dependencies": [
-        "file_selector_macos",
-        "file_selector_platform_interface",
-        "flutter",
-        "image_picker_platform_interface"
-      ]
-    },
-    {
-      "name": "image_picker_for_web",
-      "version": "3.1.1",
-      "dependencies": [
-        "flutter",
-        "flutter_web_plugins",
-        "image_picker_platform_interface",
-        "mime",
-        "web"
-      ]
-    },
-    {
-      "name": "mime",
-      "version": "2.1.0",
-      "dependencies": []
-    },
-    {
-      "name": "image_picker_ios",
-      "version": "0.8.13+7",
-      "dependencies": [
-        "flutter",
-        "image_picker_platform_interface",
-        "meta"
-      ]
-    },
-    {
-      "name": "file_selector_platform_interface",
-      "version": "2.7.0",
-      "dependencies": [
-        "cross_file",
-        "flutter",
-        "http",
-        "plugin_platform_interface"
-      ]
-    },
-    {
-      "name": "file_selector_linux",
-      "version": "0.9.4+1",
-      "dependencies": [
-        "cross_file",
-        "file_selector_platform_interface",
-        "flutter",
-        "meta"
-      ]
-    },
-    {
-      "name": "file_selector_macos",
-      "version": "0.9.5+1",
-      "dependencies": [
-        "cross_file",
-        "file_selector_platform_interface",
-        "flutter",
-        "meta"
-      ]
-    },
-    {
-      "name": "file_selector_windows",
-      "version": "0.9.3+6",
-      "dependencies": [
-        "cross_file",
-        "file_selector_platform_interface",
-        "flutter",
-        "meta"
-      ]
-    },
-    {
-      "name": "image_picker_android",
-      "version": "0.8.13+22",
-      "dependencies": [
-        "flutter",
-        "flutter_plugin_android_lifecycle",
-        "image_picker_platform_interface",
-        "meta"
-      ]
-    },
-    {
-      "name": "file_picker",
-      "version": "8.3.7",
-      "dependencies": [
-        "cross_file",
+        "dbus",
         "ffi",
         "flutter",
-        "flutter_plugin_android_lifecycle",
-        "flutter_web_plugins",
+        "flutter_local_notifications_platform_interface",
         "path",
-        "plugin_platform_interface",
-        "web",
-        "win32"
+        "xdg_directories"
       ]
     },
     {
-      "name": "cross_file",
-      "version": "0.3.5+5",
+      "name": "timezone",
+      "version": "0.9.4",
       "dependencies": [
+        "path"
+      ]
+    },
+    {
+      "name": "dbus",
+      "version": "0.7.15",
+      "dependencies": [
+        "args",
+        "ffi",
         "meta",
+        "xml"
+      ]
+    },
+    {
+      "name": "xml",
+      "version": "7.0.1",
+      "dependencies": [
+        "collection",
+        "meta",
+        "petitparser"
+      ]
+    },
+    {
+      "name": "petitparser",
+      "version": "7.0.2",
+      "dependencies": [
+        "collection",
+        "meta"
+      ]
+    },
+    {
+      "name": "shared_preferences",
+      "version": "2.5.5",
+      "dependencies": [
+        "flutter",
+        "shared_preferences_android",
+        "shared_preferences_foundation",
+        "shared_preferences_linux",
+        "shared_preferences_platform_interface",
+        "shared_preferences_web",
+        "shared_preferences_windows"
+      ]
+    },
+    {
+      "name": "shared_preferences_windows",
+      "version": "2.4.1",
+      "dependencies": [
+        "file",
+        "flutter",
+        "path",
+        "path_provider_platform_interface",
+        "path_provider_windows",
+        "shared_preferences_platform_interface"
+      ]
+    },
+    {
+      "name": "shared_preferences_linux",
+      "version": "2.4.1",
+      "dependencies": [
+        "file",
+        "flutter",
+        "path",
+        "path_provider_linux",
+        "path_provider_platform_interface",
+        "shared_preferences_platform_interface"
+      ]
+    },
+    {
+      "name": "shared_preferences_platform_interface",
+      "version": "2.4.2",
+      "dependencies": [
+        "flutter",
+        "plugin_platform_interface"
+      ]
+    },
+    {
+      "name": "shared_preferences_web",
+      "version": "2.4.3",
+      "dependencies": [
+        "flutter",
+        "flutter_web_plugins",
+        "shared_preferences_platform_interface",
         "web"
       ]
     },
     {
-      "name": "win32",
-      "version": "5.15.0",
+      "name": "shared_preferences_foundation",
+      "version": "2.5.7",
       "dependencies": [
-        "ffi"
+        "flutter",
+        "meta",
+        "shared_preferences_platform_interface"
       ]
     },
     {
-      "name": "flutter_plugin_android_lifecycle",
-      "version": "2.0.35",
+      "name": "file",
+      "version": "7.0.1",
       "dependencies": [
-        "flutter"
+        "meta",
+        "path"
+      ]
+    },
+    {
+      "name": "shared_preferences_android",
+      "version": "2.4.28",
+      "dependencies": [
+        "flutter",
+        "meta",
+        "shared_preferences_platform_interface"
       ]
     }
   ],

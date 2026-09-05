@@ -5,12 +5,27 @@ import 'screens/family_screen.dart';
 import 'screens/vault_screen.dart';
 import 'screens/wellbeing_screen.dart';
 
-void main() {
-  runApp(const IdyllicApp());
+import 'package:shared_preferences/shared_preferences.dart';
+import 'screens/login_screen.dart';
+import 'screens/onboarding_screen.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+  bool isOnboarded = prefs.getBool('isOnboarded') ?? false;
+  
+  Widget initialScreen = LoginScreen();
+  if (isLoggedIn) {
+    initialScreen = isOnboarded ? const AppScreen() : OnboardingScreen();
+  }
+
+  runApp(IdyllicApp(initialScreen: initialScreen));
 }
 
 class IdyllicApp extends StatelessWidget {
-  const IdyllicApp({super.key});
+  final Widget initialScreen;
+  const IdyllicApp({super.key, required this.initialScreen});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +35,7 @@ class IdyllicApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const AppScreen(),
+      home: initialScreen,
     );
   }
 }

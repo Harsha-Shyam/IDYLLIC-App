@@ -37,6 +37,11 @@ jobs:
         run: flutter create . --platforms android
         working-directory: ./frontend
 
+      - name: Add Android Permissions
+        run: |
+          sed -i 's/<application/    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"\/>\n    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"\/>\n    <uses-permission android:name="android.permission.USE_EXACT_ALARM"\/>\n    <application/' android/app/src/main/AndroidManifest.xml
+        working-directory: ./frontend
+
       - name: Build APK
         run: flutter build apk --release
         working-directory: ./frontend

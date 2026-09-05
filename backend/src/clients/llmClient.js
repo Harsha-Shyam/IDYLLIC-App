@@ -11,7 +11,7 @@ class LLMClient {
             title: "Park with Anu"
         };
     }
-    }
+
 
     async synthesizeRecall(query, context) {
         // Mock LLM Synthesis
