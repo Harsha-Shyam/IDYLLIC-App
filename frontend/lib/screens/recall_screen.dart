@@ -47,7 +47,7 @@ class _RecallScreenState extends State<RecallScreen> {
                 labelText: 'Ask about your memories...',
                 suffixIcon: IconButton(
                   icon: const Icon(Icons.send),
-                  onTap: _askQuestion,
+                  onPressed: _askQuestion,
                 ),
               ),
               onSubmitted: (_) => _askQuestion(),
