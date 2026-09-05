@@ -59,6 +59,37 @@ class MemoryService {
             client.release();
         }
     }
+    async recallMemory(userId, query) {
+        const client = await db.getClient();
+        try {
+            // 1. Embed query
+            const embeddingVector = await embeddingClient.generateEmbedding(query);
+            const embeddingStr = `[${embeddingVector.join(',')}]`;
+
+            // 2. Vector Search using <-> operator
+            const result = await client.query(
+                `SELECT transcript, title, occurred_on, location_text 
+                 FROM memories 
+                 WHERE user_id = $1 
+                 ORDER BY embedding <-> $2 LIMIT 5`,
+                [userId, embeddingStr]
+            );
+
+            // 3. Construct context
+            const contextStr = result.rows.map(row => 
+                `Date: ${row.occurred_on}, Location: ${row.location_text}\nTranscript: ${row.transcript}`
+            ).join('\n\n');
+
+            // 4. Synthesize answer with LLM
+            const answer = await llmClient.synthesizeRecall(query, contextStr);
+            return answer;
+        } catch (error) {
+            console.error("Error recalling memory:", error);
+            throw error;
+        } finally {
+            client.release();
+        }
+    }
 }
 
 module.exports = new MemoryService();

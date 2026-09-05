@@ -39,4 +39,28 @@ router.post('/capture', upload.single('audio'), async (req, res) => {
     }
 });
 
+router.post('/recall', async (req, res) => {
+    try {
+        const userId = req.user.id;
+        const actorPersonId = req.user.self_person_id;
+        const { query } = req.body;
+
+        if (!query) {
+            return res.status(400).json({ error: 'Query is required.' });
+        }
+
+        // ABAC Policy Check
+        const isAllowed = await policyEngine.check(userId, actorPersonId, 'memories', 'view');
+        if (!isAllowed) {
+            return res.status(403).json({ error: 'Forbidden' });
+        }
+
+        const result = await memoryService.recallMemory(userId, query);
+        return res.status(200).json({ answer: result });
+    } catch (error) {
+        console.error("Recall Route Error:", error);
+        return res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 module.exports = router;

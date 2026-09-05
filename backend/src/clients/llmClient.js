@@ -11,5 +11,14 @@ class LLMClient {
             title: "Park with Anu"
         };
     }
+    }
+
+    async synthesizeRecall(query, context) {
+        // Mock LLM Synthesis
+        if (!context) {
+            return "I couldn't find any memories matching your question.";
+        }
+        return `Based on your memories, here is the answer: The context shows that you have recorded memories about this. (Mocked LLM Response to: ${query})`;
+    }
 }
 module.exports = new LLMClient();
