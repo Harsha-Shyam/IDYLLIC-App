@@ -31,9 +31,8 @@ class _CaptureScreenState extends State<CaptureScreen> {
         final path = '${dir.path}/memory_${DateTime.now().millisecondsSinceEpoch}.m4a';
         
         await _audioRecorder.start(
+          const RecordConfig(encoder: AudioEncoder.aacLc, bitRate: 128000),
           path: path,
-          encoder: AudioEncoder.aacLc, // good default
-          bitRate: 128000,
         );
         
         setState(() {
