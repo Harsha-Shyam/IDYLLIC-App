@@ -12,7 +12,7 @@ class CaptureScreen extends StatefulWidget {
 }
 
 class _CaptureScreenState extends State<CaptureScreen> {
-  final _audioRecorder = Record();
+  final _audioRecorder = AudioRecorder();
   bool _isRecording = false;
   String? _audioPath;
   bool _isUploading = false;
